@@ -20,7 +20,8 @@ outlook:
 
 notification:
   message_to_discord: true
-  txt_file_to_discord: true
+  txt_file_to_discord: false
 
 github_action:
   enabled: true  # Enable or disable GitHub action integration
+  push_remaining_files: false  # Enable or disable pushing remaining current folder files
