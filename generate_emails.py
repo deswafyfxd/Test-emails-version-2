@@ -72,6 +72,10 @@ def main():
         # Explicitly add created files to the Git index
         for file in created_files:
             subprocess.run(["git", "add", file])
+        
+        # Push remaining current folder files if enabled
+        if control_config.get('github_action', {}).get('push_remaining_files', False):
+            subprocess.run(["git", "add", "."])
         push_to_github(created_files)
 
 if __name__ == "__main__":
