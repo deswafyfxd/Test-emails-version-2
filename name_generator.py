@@ -14,22 +14,25 @@ def generate_name(name_types, add_numbers):
         fake = Faker('en_US')
     elif name_types['personal_given_names']['other']:
         fake = Faker('en_US')
-    elif name_types['surnames']:
-        return fake.last_name().lower()
+    else:
+        fake = Faker()
+
+    if name_types['surnames']:
+        name = fake.last_name().lower()
     elif name_types['nicknames']:
-        return fake.first_name().lower()
+        name = fake.first_name().lower()
     elif name_types['brand_names']:
-        return fake.company().lower().replace(' ', '')
+        name = fake.company().lower().replace(' ', '')
     elif name_types['place_names']:
-        return fake.city().lower()
+        name = fake.city().lower()
     elif name_types['pen_names']:
-        return f"{fake.first_name().lower()}_{fake.last_name().lower()}"
+        name = f"{fake.first_name().lower()}_{fake.last_name().lower()}"
     elif name_types['stage_names']:
-        return f"{fake.first_name().lower()}_{fake.last_name().lower()}"
+        name = f"{fake.first_name().lower()}_{fake.last_name().lower()}"
     elif name_types['usernames']:
-        return fake.user_name().lower()
+        name = fake.user_name().lower()
     elif name_types['scientific_names']:
-        return f"species_{fake.word()}".lower()
+        name = f"species_{fake.word()}".lower()
     else:
         name = fake.first_name().lower()  # Default to personal names if all false
 
