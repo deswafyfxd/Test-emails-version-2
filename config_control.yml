@@ -21,3 +21,6 @@ outlook:
 notification:
   message_to_discord: true
   txt_file_to_discord: false
+
+github_action:
+  enabled: true  # Enable or disable GitHub action integration
