@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-def create_and_move_file(email, folder, base_filename):
+def create_and_move_file(emails, folder, base_filename):
     if not os.path.exists(folder):
         os.makedirs(folder)
     
