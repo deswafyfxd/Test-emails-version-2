@@ -38,8 +38,9 @@ jobs:
     - name: Commit and Push generated emails
       if: success()
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
       run: |
+        git remote set-url origin https://x-access-token:${{ secrets.REPO_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
         git add gmail/generated_emails.txt outlook/generated_emails.txt
         git commit -m "Add generated emails"
         git push
