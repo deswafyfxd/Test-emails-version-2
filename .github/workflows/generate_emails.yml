@@ -6,9 +6,6 @@ on:
       - main
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   generate:
     runs-on: ubuntu-latest
@@ -36,12 +33,13 @@ jobs:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
     - name: Configure Git
+      if: ${{ secrets.GITHUB_ACTION_ENABLED == 'true' }}
       run: |
         git config --global user.name 'GitHub Actions Bot'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
     - name: Commit and Push generated emails
-      if: success()
+      if: ${{ secrets.GITHUB_ACTION_ENABLED == 'true' }}
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
