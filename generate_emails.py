@@ -62,7 +62,7 @@ def main():
 
     if control_config['gmail']['enabled']:
         gmail_emails = generate_emails(email_config['gmail'], name_types, add_numbers, gmail_total_count, gmail_plus_count, gmail_dot_variation_count, gmail_plus_dot_combination_count, "gmail.com", gmail_plus_enabled, gmail_dot_variation_enabled, gmail_plus_dot_combination_enabled)
-        gmail_filename = create_and_move_file(gmail_emails, "gmail", email_config['gmail'].split('@')[0])
+        gmail_filename = create_and_move_file(gmail_emails, "gmail", email_config['gmail'].split('@')[0], "gmail")
         created_files.append(gmail_filename)
         
         if control_config['gmail'].get('send_to_discord', False):
@@ -70,7 +70,7 @@ def main():
 
     if control_config['outlook']['enabled']:
         outlook_emails = generate_emails(email_config['outlook'], name_types, add_numbers, outlook_total_count, outlook_plus_count, outlook_dot_variation_count, outlook_plus_dot_combination_count, "outlook.com", outlook_plus_enabled, outlook_dot_variation_enabled, outlook_plus_dot_combination_enabled)
-        outlook_filename = create_and_move_file(outlook_emails, "outlook", email_config['outlook'].split('@')[0])
+        outlook_filename = create_and_move_file(outlook_emails, "outlook", email_config['outlook'].split('@')[0], "outlook")
         created_files.append(outlook_filename)
         
         if control_config['outlook'].get('send_to_discord', False):
