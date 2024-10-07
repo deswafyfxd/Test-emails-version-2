@@ -33,8 +33,10 @@ def send_txt_to_discord(emails, webhook_url):
         for email in emails:
             file.write(email + "\n")
     
+    attachment_path = "generated_emails.txt"
+
     apobj.notify(
         body="Generated emails are attached.",
         title="Generated Emails",
-        attach={"file": "generated_emails.txt"}
+        attach=attachment_path
     )
