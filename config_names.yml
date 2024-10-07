@@ -1,0 +1,19 @@
+name_types:
+  personal_given_names:
+    indian: false
+    western: true
+    japanese: false
+    chinese: false
+    other: false
+  surnames: false
+  nicknames: false
+  brand_names: false
+  place_names: false
+  pen_names: false
+  stage_names: false
+  usernames: false
+  scientific_names: false
+
+add_numbers:
+  enabled: true
+  digits: 2
