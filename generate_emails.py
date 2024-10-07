@@ -83,7 +83,6 @@ def main():
 
     if control_config['notification']['txt_file_to_discord']:
         send_txt_to_discord(gmail_emails + outlook_emails, discord_webhook_url)
-        send_file_to_discord("generated_emails.txt", discord_webhook_url)
 
     print(f"github_action enabled: {control_config['github_action']['enabled']}")
     if control_config.get('github_action', {}).get('enabled', False):
