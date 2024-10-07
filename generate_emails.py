@@ -1,67 +1,7 @@
-import random
-import string
 import os
-import yaml
-from faker import Faker
-import apprise
-from datetime import datetime
-
-fake = Faker()
-
-def load_config(file_path):
-    with open(file_path, 'r') as file:
-        return yaml.safe_load(file)
-
-def generate_name(name_types):
-    # ... existing code ...
-
-def generate_dot_variations(username):
-    # ... existing code ...
-
-def generate_emails(base_email, name_types, add_numbers, total_count=10, plus_count=0, dot_variation_count=0, plus_dot_combination_count=0, domain="", plus_enabled=True, dot_enabled=True, plus_dot_combination_enabled=True):
-    # ... existing code ...
-
-def write_to_file(filename, emails):
-    with open(filename, 'w') as f:
-        for email in emails:
-            f.write(f"{email}\n")
-
-def send_to_discord(gmail_emails, outlook_emails, webhook_url):
-    apobj = apprise.Apprise()
-    apobj.add(webhook_url)
-
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    gmail_plus = [email for email in gmail_emails if "+" in email and "." not in email]
-    gmail_dot = [email for email in gmail_emails if "." in email and "+" not in email]
-    gmail_plus_dot = [email for email in gmail_emails if "+" in email and "." in email]
-    
-    outlook_plus = [email for email in outlook_emails if "+" in email]
-
-    message = (
-        f"**Date and Time:** {timestamp}\n\n"
-        "**Gmail Emails:**\n"
-        "**Plus and Plus Dot Combination:**\n" + "\n".join(gmail_plus) + "\n" + "\n".join(gmail_plus_dot) + "\n\n"
-        "**Dot Variation:**\n" + "\n".join(gmail_dot) + "\n\n"
-        "**Outlook Emails:**\n"
-        "**Plus:**\n" + "\n".join(outlook_plus)
-    )
-
-    apobj.notify(body=message, title="Generated Emails")
-
-def send_txt_to_discord(emails, webhook_url):
-    apobj = apprise.Apprise()
-    apobj.add(webhook_url)
-    
-    with open("generated_emails.txt", 'w') as file:
-        for email in emails:
-            file.write(email + "\n")
-    
-    apobj.notify(
-        body="Generated emails are attached.",
-        title="Generated Emails",
-        attach={"file": "generated_emails.txt"}
-    )
+from config_loader import load_config
+from email_generator import generate_emails, write_to_file
+from notification_sender import send_to_discord, send_txt_to_discord
 
 def main():
     control_config = load_config('config_control.yml')
