@@ -23,4 +23,4 @@ notification:
   txt_file_to_discord: true
 
 github_action:
-  enabled: false  # Enable or disable GitHub action integration
+  enabled: true  # Enable or disable GitHub action integration
