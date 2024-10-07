@@ -16,8 +16,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      with:
-        persist-credentials: false
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -35,15 +33,12 @@ jobs:
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
-    - name: Configure Git
-      run: |
-        git config --global user.name 'GitHub Actions Bot'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
     - name: Commit and Push generated emails
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
+        git config --global user.name 'GitHub Actions Bot'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
         git add gmail/generated_emails.txt outlook/generated_emails.txt
         if ! git diff-index --quiet HEAD; then
