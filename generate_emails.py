@@ -1,8 +1,8 @@
 import os
-import subprocess
 from config_loader import load_config
 from email_generator import generate_emails, write_to_file
 from notification_sender import send_to_discord, send_txt_to_discord
+import subprocess
 
 def push_to_github():
     subprocess.run(["git", "add", "."])
@@ -65,11 +65,11 @@ def main():
     if control_config['notification']['txt_file_to_discord']:
         send_txt_to_discord(gmail_emails + outlook_emails, discord_webhook_url)
 
-    # Save the github_action flag to an environment variable
-    os.environ['GITHUB_ACTION_ENABLED'] = 'true' if control_config['github_action']['enabled'] else 'false'
+    # Log the value of github_action flag
+    print(f"github_action enabled: {control_config['github_action']['enabled']}")
 
     # Ensure GitHub action is not pushing if disabled
-    if control_config['github_action']['enabled']:
+    if control_config.get('github_action', {}).get('enabled', False):
         push_to_github()
 
 if __name__ == "__main__":
