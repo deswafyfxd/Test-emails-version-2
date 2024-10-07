@@ -11,7 +11,7 @@ def generate_emails(base_email, name_types, add_numbers, total_count=10, plus_co
 
     count = 0
     while count < plus_count and plus_enabled:
-        plus_emails.add(f"{username}+{generate_name(name_types)}@{domain}")
+        plus_emails.add(f"{username}+{generate_name(name_types, add_numbers)}@{domain}")
         count += 1
 
     count = 0
@@ -29,13 +29,8 @@ def generate_emails(base_email, name_types, add_numbers, total_count=10, plus_co
         for var in variation:
             if count >= plus_dot_combination_count:
                 break
-            plus_dot_emails.add(f"{var}+{generate_name(name_types)}@{domain}")
+            plus_dot_emails.add(f"{var}+{generate_name(name_types, add_numbers)}@{domain}")
             count += 1
 
     emails = list(plus_emails) + list(dot_emails) + list(plus_dot_emails)
     return emails[:total_count]
-
-def write_to_file(filename, emails):
-    with open(filename, 'w') as f:
-        for email in emails:
-            f.write(f"{email}\n")
