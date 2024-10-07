@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from config_loader import load_config
 from email_generator import generate_emails, write_to_file
 from notification_sender import send_to_discord, send_txt_to_discord
@@ -45,17 +46,21 @@ def main():
         outlook_dot_variation_count = 0
         outlook_plus_dot_combination_count = 0
 
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
     if control_config['gmail']['enabled']:
         gmail_emails = generate_emails(email_config['gmail'], name_types, add_numbers, gmail_total_count, gmail_plus_count, gmail_dot_variation_count, gmail_plus_dot_combination_count, "gmail.com", gmail_plus_enabled, gmail_dot_variation_enabled, gmail_plus_dot_combination_enabled)
         if not os.path.exists('gmail'):
             os.makedirs('gmail')
-        write_to_file("gmail/generated_emails.txt", gmail_emails)
+        gmail_filename = f"gmail/{email_config['gmail'].split('@')[0]}_{timestamp}.txt"
+        write_to_file(gmail_filename, gmail_emails)
 
     if control_config['outlook']['enabled']:
         outlook_emails = generate_emails(email_config['outlook'], name_types, add_numbers, outlook_total_count, outlook_plus_count, outlook_dot_variation_count, outlook_plus_dot_combination_count, "outlook.com", outlook_plus_enabled, outlook_dot_variation_enabled, outlook_plus_dot_combination_enabled)
         if not os.path.exists('outlook'):
             os.makedirs('outlook')
-        write_to_file("outlook/generated_emails.txt", outlook_emails)
+        outlook_filename = f"outlook/{email_config['outlook'].split('@')[0]}_{timestamp}.txt"
+        write_to_file(outlook_filename, outlook_emails)
 
     discord_webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
 
@@ -65,10 +70,7 @@ def main():
     if control_config['notification']['txt_file_to_discord']:
         send_txt_to_discord(gmail_emails + outlook_emails, discord_webhook_url)
 
-    # Log the value of github_action flag
     print(f"github_action enabled: {control_config['github_action']['enabled']}")
-
-    # Ensure GitHub action is not pushing if disabled
     if control_config.get('github_action', {}).get('enabled', False):
         push_to_github()
 
