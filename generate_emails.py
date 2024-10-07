@@ -65,8 +65,8 @@ def main():
     if control_config['notification']['txt_file_to_discord']:
         send_txt_to_discord(gmail_emails + outlook_emails, discord_webhook_url)
 
-    # Check if GitHub action is enabled before pushing
-    if control_config.get('github_action', {}).get('enabled', False):
+    # Ensure GitHub action is not pushing if disabled
+    if control_config['github_action']['enabled']:
         push_to_github()
 
 if __name__ == "__main__":
