@@ -34,3 +34,8 @@ def generate_emails(base_email, name_types, add_numbers, total_count=10, plus_co
 
     emails = list(plus_emails) + list(dot_emails) + list(plus_dot_emails)
     return emails[:total_count]
+
+def write_to_file(filename, emails):
+    with open(filename, 'w') as f:
+        for email in emails:
+            f.write(f"{email}\n")
