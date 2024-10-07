@@ -69,6 +69,9 @@ def main():
 
     print(f"github_action enabled: {control_config['github_action']['enabled']}")
     if control_config.get('github_action', {}).get('enabled', False):
+        # Explicitly add created files to the Git index
+        for file in created_files:
+            subprocess.run(["git", "add", file])
         push_to_github(created_files)
 
 if __name__ == "__main__":
