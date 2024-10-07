@@ -4,6 +4,7 @@ from email_generator import generate_emails
 from notification_sender import send_to_discord, send_txt_to_discord
 from file_manager import create_and_move_file
 import subprocess
+import apprise
 
 def push_to_github(files):
     for file in files:
