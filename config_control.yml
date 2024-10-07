@@ -1,0 +1,23 @@
+gmail:
+  enabled: true
+  count: 20
+  plus: true
+  plus_count: 5
+  dot_variation: true
+  dot_variation_count: 5
+  plus_dot_combination: true
+  plus_dot_combination_count: 5
+
+outlook:
+  enabled: true
+  count: 15
+  plus: true
+  plus_count: 7
+  dot_variation: false
+  dot_variation_count: 0
+  plus_dot_combination: false
+  plus_dot_combination_count: 0
+
+notification:
+  message_to_discord: true
+  txt_file_to_discord: false
