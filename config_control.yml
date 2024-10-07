@@ -7,6 +7,7 @@ gmail:
   dot_variation_count: 5
   plus_dot_combination: true
   plus_dot_combination_count: 5
+  send_to_discord: true  # Enable or disable sending Gmail txt file to Discord
 
 outlook:
   enabled: true
@@ -17,6 +18,7 @@ outlook:
   dot_variation_count: 0
   plus_dot_combination: false
   plus_dot_combination_count: 0
+  send_to_discord: true  # Enable or disable sending Outlook txt file to Discord
 
 notification:
   message_to_discord: true
@@ -24,4 +26,4 @@ notification:
 
 github_action:
   enabled: true  # Enable or disable GitHub action integration
-  push_remaining_files: true  # Enable or disable pushing remaining current folder files
+  push_remaining_files: false  # Enable or disable pushing remaining current folder files
