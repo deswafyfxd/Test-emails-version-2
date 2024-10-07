@@ -24,7 +24,7 @@ def main():
 
     outlook_plus_count = control_config['outlook'].get('plus_count', 0)
     outlook_dot_variation_count = control_config['outlook'].get('dot_variation_count', 0)
-    outlook_plus_dot_combination_count = 0  # Outlook does not support dots
+    outlook_plus_dot_combination_count = 0
     outlook_plus_enabled = control_config['outlook'].get('plus', False)
     outlook_dot_variation_enabled = control_config['outlook'].get('dot_variation', False)
     outlook_plus_dot_combination_enabled = control_config['outlook'].get('plus_dot_combination', False)
