@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        persist-credentials: false
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -38,9 +40,18 @@ jobs:
     - name: Commit and Push generated emails
       if: success()
       env:
-        REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
-        git remote set-url origin https://${{ secrets.REPO_ACCESS_TOKEN }}@github.com/${{ github.repository }}.git
+        git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
         git add gmail/generated_emails.txt outlook/generated_emails.txt
-        git commit -m "Add generated emails"
-        git push
+        if ! git diff-index --quiet HEAD; then
+          git commit -m "Add generated emails [skip ci]"
+          git push origin HEAD:main
+        else
+          echo "No changes to commit"
+
+    - name: Send to Discord
+      env:
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      run: |
+        python generate_emails.py
