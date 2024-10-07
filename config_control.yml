@@ -24,4 +24,4 @@ notification:
 
 github_action:
   enabled: true  # Enable or disable GitHub action integration
-  push_remaining_files: false  # Enable or disable pushing remaining current folder files
+  push_remaining_files: true  # Enable or disable pushing remaining current folder files
