@@ -19,5 +19,5 @@ outlook:
   plus_dot_combination_count: 0
 
 notification:
-  message_to_discord: true
-  txt_file_to_discord: false
+  message_to_discord: false
+  txt_file_to_discord: true
