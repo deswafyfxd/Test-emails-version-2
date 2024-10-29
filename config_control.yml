@@ -11,11 +11,11 @@ gmail:
 
 outlook:
   enabled: false
-  count: 15
+  count: 50
   plus: true
-  plus_count: 7
+  plus_count: 0
   dot_variation: false
-  dot_variation_count: 0
+  dot_variation_count: 50
   plus_dot_combination: false
   plus_dot_combination_count: 0
   send_to_discord: true  # Enable or disable sending Outlook txt file to Discord
