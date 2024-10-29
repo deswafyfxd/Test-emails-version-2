@@ -21,7 +21,7 @@ outlook:
   send_to_discord: true  # Enable or disable sending Outlook txt file to Discord
 
 notification:
-  message_to_discord: true
+  message_to_discord: false
   txt_file_to_discord: true
 
 github_action:
