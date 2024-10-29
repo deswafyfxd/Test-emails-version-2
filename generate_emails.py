@@ -48,7 +48,7 @@ def main():
     outlook_dot_variation_enabled = control_config['outlook'].get('dot_variation', False)
     outlook_plus_dot_combination_enabled = control_config['outlook'].get('plus_dot_combination', False)
 
-    if gmail_total_count <= 10:
+    if gmail_total_count <= 100:
         gmail_plus_count = gmail_total_count
         gmail_dot_variation_count = 0
         gmail_plus_dot_combination_count = 0
