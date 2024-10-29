@@ -1,16 +1,16 @@
 gmail:
   enabled: true
   count: 20
-  plus: true
-  plus_count: 5
+  plus: false
+  plus_count: 0
   dot_variation: true
-  dot_variation_count: 5
-  plus_dot_combination: true
-  plus_dot_combination_count: 5
+  dot_variation_count: 100
+  plus_dot_combination: false
+  plus_dot_combination_count: 0
   send_to_discord: true  # Enable or disable sending Gmail txt file to Discord
 
 outlook:
-  enabled: true
+  enabled: false
   count: 15
   plus: true
   plus_count: 7
@@ -26,4 +26,4 @@ notification:
 
 github_action:
   enabled: true  # Enable or disable GitHub action integration
-  push_remaining_files: false  # Enable or disable pushing remaining current folder files
+  push_remaining_files: true  # Enable or disable pushing remaining current folder files
