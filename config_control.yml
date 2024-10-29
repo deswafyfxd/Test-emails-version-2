@@ -1,6 +1,6 @@
 gmail:
   enabled: true
-  count: 20
+  count: 100
   plus: false
   plus_count: 0
   dot_variation: true
