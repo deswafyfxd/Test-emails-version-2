@@ -1,10 +1,10 @@
 gmail:
   enabled: true
-  count: 0
+  count: 50
   plus: false
   plus_count: 0
   dot_variation: true
-  dot_variation_count: 50
+  dot_variation_count: 0
   plus_dot_combination: false
   plus_dot_combination_count: 0
   send_to_discord: true  # Enable or disable sending Gmail txt file to Discord
